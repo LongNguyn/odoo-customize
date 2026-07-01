@@ -65,7 +65,7 @@
         <field name="arch" type="xml">
             <search string="Search Phân Ca">
                 <field name="employee_id" string="Nhân viên"/>
-                <filter string="Trạng thái: Chờ duyệt" name="state_draft" domain="[('status', '=', 'draft')]" />
+                <filter string="Trạng thái: Chờ duyệt" name="state_draft" domain="['|', '&amp;', '&amp;', ('status', '=', 'draft'), ('employee_id.company_id.overtime', '!=', True), '|', ('employee_id.parent_id.user_id', '=', uid), ('department_id.manager_id.user_id', '=', uid), '&amp;', ('employee_id.company_id.overtime', '=', True), ('status_lv2', '=', 'confirm')]" />
             </search>
         </field>
     </record>
